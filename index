@@ -1,3 +1,32 @@
+Skip to content
+theau-michel
+Limpiu1
+Repository navigation
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security and quality
+Insights
+Settings
+Limpiu1
+/index
+Go to file
+t
+T
+theau-michel
+theau-michel
+Create index
+d769fa5
+ · 
+yesterday
+
+Code
+
+Blame
+183 lines (175 loc) · 10.1 KB
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,6 +46,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:
 .nav-phone{font-size:13px;letter-spacing:1px;color:#5a6b4d;text-decoration:none}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7rem 2rem 4rem;position:relative}
 .hero-leaf{font-size:34px;color:#5a6b4d;margin-bottom:1rem}
+
+.hero-branch{
+    margin-bottom:18px;
+    display:flex;
+    justify-content:center;
+}
+.hero-branch img{
+    width:170px;
+    height:auto;
+    display:block;
+}
+
 .hero-logo{font-size:clamp(50px,11vw,90px);font-weight:300;letter-spacing:16px;color:#2d3a2e;margin-bottom:1rem;padding-left:16px}
 .hero-tagline{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:#5a6b4d}
 .hero-divider{width:36px;height:1px;background:#a8b29a;margin:1.4rem auto}
@@ -76,7 +117,9 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
 </nav>
 
 <div class="hero">
-  <div class="hero-leaf">&#127811;</div>
+  <div class="hero-branch">
+  <img src="olive-branch.png" alt="">
+</div>
   <div class="hero-logo">LIMPIU</div>
   <div class="hero-tagline">Nettoie votre véhicule à domicile</div>
   <div class="hero-divider"></div>
@@ -138,13 +181,13 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
     <div class="price-wrap">
       <div class="price-card">
         <div class="price-num">65€</div>
-        <div class="price-unit">Intérieur + Extérieur</div>
-        <div class="price-detail">Berlines et citadines.<br>Tarif confirmé avant intervention.</div>
+        <div class="price-unit">Intérieur seul</div>
+        <div class="price-detail">Aspiration complète, plastiques, vitres et finition habitacle.</div>
       </div>
       <div class="price-card alt">
-        <div class="price-num">0€</div>
-        <div class="price-unit">Déplacement</div>
-        <div class="price-detail">Gratuit sur toute la Balagne.<br>Aucun frais caché.</div>
+        <div class="price-num">80€</div>
+        <div class="price-unit">Intérieur + Extérieur</div>
+        <div class="price-detail">Prestation complète à domicile.</div>
       </div>
     </div>
     <div class="extra">
