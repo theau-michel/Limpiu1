@@ -1,32 +1,3 @@
-Skip to content
-theau-michel
-Limpiu1
-Repository navigation
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Limpiu1
-/index
-Go to file
-t
-T
-theau-michel
-theau-michel
-Create index
-d769fa5
- · 
-yesterday
-
-Code
-
-Blame
-183 lines (175 loc) · 10.1 KB
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -45,7 +16,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:
 .nav-logo{font-size:18px;letter-spacing:6px;font-weight:300;color:#2d3a2e;text-decoration:none}
 .nav-phone{font-size:13px;letter-spacing:1px;color:#5a6b4d;text-decoration:none}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7rem 2rem 4rem;position:relative}
-.hero-leaf{font-size:34px;color:#5a6b4d;margin-bottom:1rem}
 
 .hero-branch{
     margin-bottom:18px;
@@ -75,13 +45,15 @@ section{padding:5rem 2rem;border-top:1px solid #e2ddd0}
 .title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,40px);font-weight:500;color:#2d3a2e;text-align:center;margin-bottom:3rem}
 .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
 .card{background:#faf9f4;border:1px solid #e2ddd0;border-radius:10px;padding:2rem 1.8rem}
-.card-icon{font-size:24px;color:#5a6b4d;margin-bottom:1.2rem}
+.card-icon{margin-bottom:1.2rem}
+.card-icon svg{width:46px;height:46px;stroke:#5a6b4d;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .card-name{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#2d3a2e;margin-bottom:1.2rem;font-weight:500}
 .card-list{list-style:none}
 .card-list li{font-family:'Cormorant Garamond',serif;font-size:17px;color:#5a6b4d;line-height:2;padding-left:18px;position:relative}
 .card-list li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:#a8b29a}
 .planning{background:#3d4a36;border-radius:12px;padding:3rem 2.5rem;text-align:center;color:#f4f2ea}
-.planning-icon{font-size:28px;color:#a8b29a;margin-bottom:1.2rem}
+.planning-icon{margin-bottom:1.2rem;display:flex;justify-content:center}
+.planning-icon svg{width:42px;height:42px;stroke:#a8b29a;stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .planning-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;margin-bottom:1.2rem}
 .planning-text{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.7;max-width:580px;margin:0 auto 1.6rem;opacity:0.92}
 .planning-tip{font-size:13px;color:#c5ccb8;line-height:1.7;max-width:540px;margin:0 auto 2.2rem;letter-spacing:0.3px}
@@ -95,7 +67,9 @@ section{padding:5rem 2rem;border-top:1px solid #e2ddd0}
 .price-unit{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.8;margin-top:8px}
 .price-detail{font-family:'Cormorant Garamond',serif;font-size:16px;margin-top:1rem;line-height:1.6;opacity:0.85}
 .extra{background:#faf9f4;border:1px solid #e2ddd0;border-radius:10px;padding:1.6rem 2rem;display:flex;align-items:center;gap:1.4rem}
-.extra-icon{font-size:28px;color:#8a9580;flex-shrink:0}
+.extra-icon{flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.extra-icon svg{width:34px;height:34px;stroke:#8a9580;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.extra-icon img{width:48px;height:48px;object-fit:contain;display:block}
 .extra-body{flex:1}
 .extra-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:#2d3a2e;font-weight:600;margin-bottom:3px}
 .extra-desc{font-size:13px;color:#7a8470;line-height:1.5}
@@ -103,7 +77,8 @@ section{padding:5rem 2rem;border-top:1px solid #e2ddd0}
 .zones{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .zone{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid #c5ccb8;border-radius:20px;padding:9px 20px;color:#5a6b4d}
 footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
-.footer-leaf{font-size:24px;color:#a8b29a;margin-bottom:0.6rem}
+.footer-branch{display:flex;justify-content:center;margin-bottom:1rem}
+.footer-branch img{width:90px;height:auto;display:block;opacity:0.85;filter:brightness(0) saturate(100%) invert(78%) sepia(8%) saturate(580%) hue-rotate(50deg) brightness(95%) contrast(85%)}
 .footer-phone{font-family:'Cormorant Garamond',serif;font-size:32px;color:#f4f2ea;letter-spacing:2px;text-decoration:none}
 .footer-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a8b29a;margin-top:0.6rem}
 @media(max-width:600px){.price-wrap{grid-template-columns:1fr}.extra{flex-direction:column;text-align:center}nav{padding:1rem 1.3rem}section{padding:3.5rem 1.3rem}}
@@ -118,8 +93,8 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
 
 <div class="hero">
   <div class="hero-branch">
-  <img src="olive-branch.png" alt="">
-</div>
+    <img src="olive-branch.png" alt="">
+  </div>
   <div class="hero-logo">LIMPIU</div>
   <div class="hero-tagline">Nettoie votre véhicule à domicile</div>
   <div class="hero-divider"></div>
@@ -137,7 +112,21 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
     <h2 class="title">Une prestation complète</h2>
     <div class="services">
       <div class="card">
-        <div class="card-icon">&#128663;</div>
+        <div class="card-icon">
+          <!-- Voiture de profil line art -->
+          <svg viewBox="0 0 64 40" aria-hidden="true">
+            <!-- Carrosserie -->
+            <path d="M4 28 L4 22 Q4 20 6 20 L14 20 L20 12 Q22 10 25 10 L40 10 Q44 10 48 14 L54 20 L58 20 Q60 20 60 22 L60 28"/>
+            <!-- Bas -->
+            <path d="M4 28 L12 28 M20 28 L44 28 M52 28 L60 28"/>
+            <!-- Vitres -->
+            <path d="M22 20 L25 13 L36 13 L40 20"/>
+            <line x1="31" y1="13" x2="31" y2="20"/>
+            <!-- Roues -->
+            <circle cx="16" cy="28" r="4"/>
+            <circle cx="48" cy="28" r="4"/>
+          </svg>
+        </div>
         <div class="card-name">Extérieur</div>
         <ul class="card-list">
           <li>Nettoyeur haute pression</li>
@@ -148,7 +137,15 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
         </ul>
       </div>
       <div class="card">
-        <div class="card-icon">&#129681;</div>
+        <div class="card-icon">
+          <!-- Siège auto line art -->
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M14 8 Q14 5 17 5 L26 5 Q29 5 29 8 L29 24 Q29 27 26 27 L17 27 Q14 27 14 24 Z"/>
+            <path d="M14 27 L11 36 Q11 39 14 39 L32 39 Q35 39 35 36 L32 27"/>
+            <line x1="14" y1="39" x2="14" y2="44"/>
+            <line x1="32" y1="39" x2="32" y2="44"/>
+          </svg>
+        </div>
         <div class="card-name">Intérieur</div>
         <ul class="card-list">
           <li>Aspiration complète</li>
@@ -165,7 +162,19 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
 <section id="planning">
   <div class="container">
     <div class="planning">
-      <div class="planning-icon">&#128197;</div>
+      <div class="planning-icon">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="7" y="10" width="34" height="32" rx="3"/>
+          <line x1="7" y1="19" x2="41" y2="19"/>
+          <line x1="15" y1="6" x2="15" y2="13"/>
+          <line x1="33" y1="6" x2="33" y2="13"/>
+          <circle cx="16" cy="27" r="1.4" fill="#a8b29a" stroke="none"/>
+          <circle cx="24" cy="27" r="1.4" fill="#a8b29a" stroke="none"/>
+          <circle cx="32" cy="27" r="1.4" fill="#a8b29a" stroke="none"/>
+          <circle cx="16" cy="34" r="1.4" fill="#a8b29a" stroke="none"/>
+          <circle cx="24" cy="34" r="1.4" fill="#a8b29a" stroke="none"/>
+        </svg>
+      </div>
       <div class="planning-title">Réservez votre créneau</div>
       <p class="planning-text">Consultez le planning et choisissez le moment qui vous convient. Vous voyez en temps réel les secteurs où nous intervenons.</p>
       <p class="planning-tip"><strong>Astuce pour être servi plus vite :</strong> si un créneau proche du vôtre est déjà réservé dans votre secteur, choisissez le créneau suivant à proximité. Cela nous permet d'enchaîner les interventions dans la même zone — et vous bénéficiez d'un rendez-vous plus rapide.</p>
@@ -191,10 +200,12 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
       </div>
     </div>
     <div class="extra">
-      <div class="extra-icon">&#128533;</div>
+      <div class="extra-icon">
+        <img src="cri.png" alt="">
+      </div>
       <div class="extra-body">
         <div class="extra-name">Véhicules fortement encrassés</div>
-        <div class="extra-desc">Poils d’animaux, sable, boue ou habitacle très marqué — supplément annoncé avant intervention.</div>
+        <div class="extra-desc">Poils d'animaux, sable, boue ou habitacle très marqué — supplément annoncé avant intervention.</div>
       </div>
       <div class="extra-price">+50€</div>
     </div>
@@ -217,7 +228,9 @@ footer{padding:3rem 2rem;text-align:center;background:#3d4a36}
 </section>
 
 <footer>
-  
+  <div class="footer-branch">
+    <img src="olive-branch.png" alt="">
+  </div>
   <a class="footer-phone" href="tel:0650638021">06 50 63 80 21</a>
   <div class="footer-sub">Limpiu — Lavage automobile à domicile · Balagne</div>
 </footer>
