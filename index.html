@@ -582,25 +582,36 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
 </footer>
 
 <script>
-// Nav au scroll
+// ── CONFIG (à remplir) ────────────────────────────────────────────────────────
+var CL_CLOUD  = 'dspfazrxe';        // ton cloud Cloudinary (le même que la Nitonnerie)
+var CL_PRESET = 'limpiu';           // preset d'upload non signé — à créer dans Cloudinary
+
+var AT_TOKEN  = 'patnHCzOZQd2cjZa8.c4818d1eb7d4f6f4f2321e211d459959c9cdce3732e36e61e3daa09df6743eb8';
+var AT_BASE   = 'app6BTLS4lCF9PlyT';       // base Limpiu
+var AT_TABLE  = 'Demandes de devis';       // nom EXACT de la table
+var F_NOM     = 'Nom';                     // nom EXACT de ta colonne primaire (ex. 'Name' si pas renommée)
+
+var AT_HEADERS = {'Authorization':'Bearer '+AT_TOKEN,'Content-Type':'application/json'};
+
+// ── Nav au scroll ─────────────────────────────────────────────────────────────
 var nav=document.getElementById('nav');
 window.addEventListener('scroll',function(){
   if(window.scrollY>30)nav.classList.add('scrolled');else nav.classList.remove('scrolled');
 });
 
-// Reveal au scroll
+// ── Reveal au scroll ──────────────────────────────────────────────────────────
 var obs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
 
-// Affiche le champ "village" si commune = Autre
+// ── Champ "village" si commune = Autre ────────────────────────────────────────
 function toggleAutreCommune(){
   var v=document.getElementById('commune').value;
   document.getElementById('autre-commune-field').style.display = (v==='Autre') ? 'block' : 'none';
 }
 
-// Champs conditionnels selon prestation
+// ── Champs conditionnels selon prestation ─────────────────────────────────────
 function showPrestaFields(){
   var val=document.getElementById('prestation').value;
   ['terrasse','vitres','canape','auto','chantier'].forEach(function(p){
@@ -609,7 +620,7 @@ function showPrestaFields(){
   if(val)document.getElementById('f-'+val).classList.add('active');
 }
 
-// Liste des photos (max 3)
+// ── Liste des photos (max 3) ──────────────────────────────────────────────────
 function listPhotos(){
   var input=document.getElementById('photos');
   var list=document.getElementById('photo-list');
@@ -630,20 +641,108 @@ function listPhotos(){
   }
 }
 
-// Envoi (intégration Airtable à venir)
-function submitDevis(){
-  var nom=document.getElementById('nom').value.trim();
-  var tel=document.getElementById('tel').value.trim();
+// ── Upload Cloudinary (renvoie l'URL sécurisée) ───────────────────────────────
+async function uploadToCloudinary(file){
+  var fd=new FormData();
+  fd.append('file',file);
+  fd.append('upload_preset',CL_PRESET);
+  var res=await fetch('https://api.cloudinary.com/v1_1/'+CL_CLOUD+'/image/upload',{method:'POST',body:fd});
+  if(!res.ok) throw new Error('Échec upload photo');
+  var data=await res.json();
+  return data.secure_url;
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function val(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+function num(id){var v=val(id);return v===''?null:Number(v);}
+
+// ── Envoi vers Cloudinary + Airtable ──────────────────────────────────────────
+async function submitDevis(){
+  var nom=val('nom');
+  var tel=val('tel');
   var typeClient=document.getElementById('type-client').value;
   var commune=document.getElementById('commune').value;
-  var prestation=document.getElementById('prestation').value;
-  if(!nom||!tel||!typeClient||!commune||!prestation){
+  if(commune==='Autre'){
+    var autre=val('autre-commune');
+    if(autre) commune=autre;
+  }
+  var prestationVal=document.getElementById('prestation').value;
+  var prestationLabel=document.getElementById('prestation').selectedOptions[0].text;
+  var message=val('message');
+
+  if(!nom||!tel||!typeClient||!commune||!prestationVal){
     alert('Merci de renseigner au minimum votre nom, téléphone, profil, commune et la prestation souhaitée.');
     return;
   }
-  // Intégration Airtable à brancher ici (API, comme la Nitonnerie)
-  alert('Merci '+nom+' ! Votre demande est prête à être envoyée.\n\n(L\'envoi vers Airtable sera activé prochainement.)');
+
+  var btn=document.querySelector('.submit-btn');
+  var oldLabel=btn.textContent;
+  btn.disabled=true; btn.textContent='Envoi…';
+
+  try {
+    // 1. Upload des photos (max 3) vers Cloudinary
+    var photos=[];
+    var input=document.getElementById('photos');
+    var files=Array.prototype.slice.call(input.files,0,3);
+    for(var i=0;i<files.length;i++){
+      btn.textContent='Upload photo '+(i+1)+'/'+files.length+'…';
+      var url=await uploadToCloudinary(files[i]);
+      photos.push({url:url});
+    }
+
+    // 2. Champs communs
+    btn.textContent='Envoi…';
+    var fields={};
+    fields[F_NOM]='';                       // rempli juste après
+    fields[F_NOM]=nom;
+    fields['Téléphone']=tel;
+    fields['Type de client']=typeClient;
+    fields['Commune']=commune;
+    fields['Prestation']=prestationLabel;
+    fields['Statut']='Nouveau';
+    fields['Origine de la demande']='Site web';
+    fields['Date de demande']=new Date().toISOString().split('T')[0];
+    if(message) fields['Message']=message;
+    if(photos.length) fields['Photos']=photos;
+
+    // 3. Champs spécifiques selon la prestation
+    if(prestationVal==='terrasse'){
+      if(num('t-surface')!==null) fields['Surface en m² (Terrasse)']=num('t-surface');
+      if(val('t-sol'))            fields['Nature du sol (Terrasse)']=val('t-sol');
+    } else if(prestationVal==='vitres'){
+      if(val('v-dim'))            fields['Dimensions fenêtres (Vitres)']=val('v-dim');
+      if(num('v-vantaux')!==null) fields['Nombre de vantaux (Vitres)']=num('v-vantaux');
+      if(num('v-nb')!==null)      fields['Nombre de fenêtres (Vitres)']=num('v-nb');
+    } else if(prestationVal==='canape'){
+      if(val('c-matiere'))        fields['Matière (Canapé)']=val('c-matiere');
+      if(num('c-places')!==null)  fields['Nombre de places (Canapé)']=num('c-places');
+    } else if(prestationVal==='auto'){
+      if(val('a-type'))           fields['Type de véhicule (Auto)']=val('a-type');
+      if(val('a-etat'))           fields['État général (Auto)']=val('a-etat');
+      fields['Présence de poils d\'animaux (Auto)']=document.getElementById('a-poils').checked;
+    } else if(prestationVal==='chantier'){
+      if(num('ch-surface')!==null) fields['Description (Fin de chantier)']='Surface : '+num('ch-surface')+' m²';
+    }
+
+    // 4. Création de la fiche (typecast crée au besoin les options de sélection)
+    var res=await fetch('https://api.airtable.com/v0/'+AT_BASE+'/'+encodeURIComponent(AT_TABLE),{
+      method:'POST', headers:AT_HEADERS,
+      body:JSON.stringify({records:[{fields:fields}], typecast:true})
+    });
+    if(!res.ok){var e=await res.json();throw new Error(e.error&&e.error.message?e.error.message:'Erreur Airtable '+res.status);}
+
+    document.querySelector('.devis-wrap').innerHTML =
+      '<div style="text-align:center;padding:2rem 1rem">'+
+      '<div style="font-size:42px;color:var(--green2);margin-bottom:1rem">✓</div>'+
+      '<h3 style="font-family:\'Cormorant Garamond\',serif;font-size:26px;color:var(--ink);margin-bottom:.8rem">Demande reçue !</h3>'+
+      '<p style="color:var(--green2);line-height:1.7">Merci '+nom+'. On revient vers vous sous 24 h.<br>Pour un besoin urgent : <a href="tel:0650638021" style="color:var(--gold)">06 50 63 80 21</a>.</p>'+
+      '</div>';
+  } catch(err){
+    btn.disabled=false; btn.textContent=oldLabel;
+    alert('Erreur lors de l\'envoi : '+err.message);
+  }
 }
+
 </script>
 </body>
 </html>
