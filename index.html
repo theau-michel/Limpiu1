@@ -440,7 +440,7 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
         <div class="field-row">
           <div class="field">
             <label class="field-label" for="t-surface">Surface approximative (m²)</label>
-            <input type="number" id="t-surface" placeholder="ex. 30">
+            <input type="number" id="t-surface" min="1" placeholder="ex. 30">
           </div>
           <div class="field">
             <label class="field-label" for="t-sol">Nature du sol</label>
@@ -466,19 +466,29 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
           </div>
           <div class="field">
             <label class="field-label" for="v-vantaux">Nombre de vantaux</label>
-            <input type="number" id="v-vantaux" placeholder="ex. 2">
+            <input type="number" id="v-vantaux" min="1" placeholder="ex. 2">
           </div>
           <div class="field">
             <label class="field-label" for="v-nb">Nombre de fenêtres</label>
-            <input type="number" id="v-nb" placeholder="ex. 6">
+            <input type="number" id="v-nb" min="1" placeholder="ex. 6">
           </div>
         </div>
       </div>
 
-      <!-- CANAPE -->
+      <!-- CANAPE / TEXTILES -->
       <div class="presta-fields" id="f-canape">
-        <p class="presta-fields-title">À propos de votre canapé</p>
-        <div class="field-row">
+        <p class="presta-fields-title">À propos de votre textile</p>
+        <div class="field">
+          <label class="field-label" for="c-type">Type</label>
+          <select id="c-type" onchange="showTextileFields()">
+            <option value="">Choisir…</option>
+            <option>Canapé</option>
+            <option>Fauteuil</option>
+            <option>Moquette</option>
+            <option>Tapis</option>
+          </select>
+        </div>
+        <div class="field-row" id="c-fields-assise" style="display:none">
           <div class="field">
             <label class="field-label" for="c-matiere">Matière</label>
             <select id="c-matiere">
@@ -489,8 +499,12 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
           </div>
           <div class="field">
             <label class="field-label" for="c-places">Nombre de places</label>
-            <input type="number" id="c-places" placeholder="ex. 3">
+            <input type="number" id="c-places" min="1" placeholder="ex. 3">
           </div>
+        </div>
+        <div class="field" id="c-fields-sol" style="display:none">
+          <label class="field-label" for="c-dim">Surface / dimensions</label>
+          <input type="text" id="c-dim" placeholder="ex. 12 m² ou 4 × 3 m">
         </div>
       </div>
 
@@ -529,7 +543,7 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
         <p class="presta-fields-title">À propos de votre chantier</p>
         <div class="field">
           <label class="field-label" for="ch-surface">Surface approximative (m²)</label>
-          <input type="number" id="ch-surface" placeholder="ex. 90">
+          <input type="number" id="ch-surface" min="1" placeholder="ex. 90">
         </div>
         <p style="font-size:13px;color:var(--sage2);line-height:1.6">Précisez le type de bien et l'état dans le message ci-dessous — on établit un devis sur mesure.</p>
       </div>
@@ -538,9 +552,9 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
         <label class="field-label">Photos (jusqu'à 3)</label>
         <div class="upload-zone" onclick="document.getElementById('photos').click()">
           <div class="upload-zone-main">Cliquer pour ajouter</div>
-          <div class="upload-zone-sub">JPG, PNG ou HEIC · 3 photos max</div>
+          <div class="upload-zone-sub">JPG, PNG ou HEIC · 3 max · une par une ou en sélection multiple</div>
         </div>
-        <input type="file" id="photos" accept="image/*" multiple style="display:none" onchange="listPhotos()">
+        <input type="file" id="photos" accept="image/*" multiple style="display:none" onchange="addPhotos(this)">
         <div class="upload-list" id="photo-list"></div>
       </div>
 
@@ -620,25 +634,39 @@ function showPrestaFields(){
   if(val)document.getElementById('f-'+val).classList.add('active');
 }
 
-// ── Liste des photos (max 3) ──────────────────────────────────────────────────
-function listPhotos(){
-  var input=document.getElementById('photos');
+// ── Sous-champs textile selon le type ─────────────────────────────────────────
+function showTextileFields(){
+  var t=document.getElementById('c-type').value;
+  document.getElementById('c-fields-assise').style.display=(t==='Canapé'||t==='Fauteuil')?'':'none';
+  document.getElementById('c-fields-sol').style.display=(t==='Moquette'||t==='Tapis')?'':'none';
+}
+
+// ── Photos (accumulées, max 3) ────────────────────────────────────────────────
+var photoFiles=[];
+function addPhotos(input){
+  var added=Array.prototype.slice.call(input.files);
+  for(var i=0;i<added.length;i++){
+    if(photoFiles.length>=3){alert('3 photos maximum.');break;}
+    photoFiles.push(added[i]);
+  }
+  input.value='';   // réinitialise pour pouvoir en rajouter
+  renderPhotos();
+}
+function removePhoto(i){ photoFiles.splice(i,1); renderPhotos(); }
+function renderPhotos(){
   var list=document.getElementById('photo-list');
   list.innerHTML='';
-  var files=Array.prototype.slice.call(input.files,0,3);
-  files.forEach(function(f){
+  photoFiles.forEach(function(f,i){
     var div=document.createElement('div');
     div.className='upload-item';
-    div.textContent='— '+f.name;
+    div.textContent='— '+f.name+'  ';
+    var x=document.createElement('span');
+    x.textContent='✕';
+    x.style.cssText='cursor:pointer;color:#9a8c5c;margin-left:6px;font-weight:600';
+    x.onclick=function(){removePhoto(i);};
+    div.appendChild(x);
     list.appendChild(div);
   });
-  if(input.files.length>3){
-    var warn=document.createElement('div');
-    warn.className='upload-item';
-    warn.style.color='#9a8c5c';
-    warn.textContent='(seules les 3 premières photos seront envoyées)';
-    list.appendChild(warn);
-  }
 }
 
 // ── Upload Cloudinary (renvoie l'URL sécurisée) ───────────────────────────────
@@ -682,8 +710,7 @@ async function submitDevis(){
   try {
     // 1. Upload des photos (max 3) vers Cloudinary
     var photos=[];
-    var input=document.getElementById('photos');
-    var files=Array.prototype.slice.call(input.files,0,3);
+    var files=photoFiles.slice(0,3);
     for(var i=0;i<files.length;i++){
       btn.textContent='Upload photo '+(i+1)+'/'+files.length+'…';
       var url=await uploadToCloudinary(files[i]);
@@ -714,8 +741,10 @@ async function submitDevis(){
       if(num('v-vantaux')!==null) fields['Nombre de vantaux (Vitres)']=num('v-vantaux');
       if(num('v-nb')!==null)      fields['Nombre de fenêtres (Vitres)']=num('v-nb');
     } else if(prestationVal==='canape'){
+      if(val('c-type'))           fields['Type de textile']=val('c-type');
       if(val('c-matiere'))        fields['Matière (Canapé)']=val('c-matiere');
       if(num('c-places')!==null)  fields['Nombre de places (Canapé)']=num('c-places');
+      if(val('c-dim'))            fields['Dimensions (textile)']=val('c-dim');
     } else if(prestationVal==='auto'){
       if(val('a-type'))           fields['Type de véhicule (Auto)']=val('a-type');
       if(val('a-etat'))           fields['État général (Auto)']=val('a-etat');
