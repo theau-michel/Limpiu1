@@ -1,0 +1,38 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#f4f2ea; --bg2:#faf9f4; --ink:#2d3a2e; --green:#3d4a36; --green2:#5a6b4d;
+  --sage:#a8b29a; --sage2:#8a9580; --line:#e2ddd0; --cream:#f4f2ea; --gold:#9a8c5c;
+}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(244,242,234,0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;transition:background .4s,backdrop-filter .4s,border-color .4s,padding .4s}
+nav.scrolled{background:rgba(244,242,234,0.88);backdrop-filter:blur(14px);border-color:var(--line);padding:0.9rem 2.5rem}
+.nav-logo{font-size:17px;letter-spacing:7px;font-weight:300;color:var(--ink);text-decoration:none;padding-left:7px;transition:opacity .2s}
+.nav-logo:hover{opacity:.65}
+.nav-right{display:flex;align-items:center;gap:1.8rem}
+.nav-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green2);text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--ink)}
+.nav-link.active{color:var(--ink);font-weight:500}
+.nav-btn{font-size:11px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:var(--cream);padding:11px 24px;text-decoration:none;transition:background .25s,transform .15s;border-radius:2px}
+.nav-btn:hover{background:var(--ink);transform:translateY(-1px)}
+@media(max-width:760px){.nav-link{display:none}nav{padding:1rem 1.4rem}nav.scrolled{padding:.85rem 1.4rem}}
+
+/* ---------- HERO (accueil) ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden}
+.hero-decor{position:absolute;pointer-events:none;opacity:.5;height:auto;display:block}
+.hero-decor.left{top:14%;left:-70px;width:260px;animation:floatA 11s ease-in-out infinite}
+.hero-decor.right{bottom:10%;right:-60px;width:210px;transform:scaleX(-1) rotate(12deg);opacity:.28;animation:floatB 13s ease-in-out infinite .7s}
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(14px) rotate(2deg)}}
+@keyframes floatB{0%,100%{transform:scaleX(-1) rotate(12deg) translateY(0)}50%{transform:scaleX(-1) rotate(10deg) translateY(14px)}}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.hero-branch{width:118px;margin-bottom:1.6rem;opacity:0;animation:fadeIn 1.1s ease .1s forwards}
+.hero-branch img{width:100%;display:block}
+.hero-logo{font-size:clamp(58px,10vw,104px);font-weight:200;letter-spacing:clamp(12px,2.4vw,22px);color:var(--ink);line-height:1;margin-bottom:1.5rem;padding-left:clamp(12px,2.4vw,22px);opacity:0;animation:rise 1s ease .25s forwards}
+.hero-tagline{font-size:clamp(11px,1.5vw,14px);letter-spacing:5px;text-transform:uppercase;color:var(--green2);margin-bottom:1.5rem;font-weight:400;opacity:0;animation:rise 1s ease .4s forwards}
+.hero-divider{width:48px;height:1px;background:var(--sage);margin-bottom:1.5rem;opacity:0;animation:growLine .9s ease .55s forwards}
+@keyframes growLine{from{width:0;opacity:0}to{width:48px;opacity:1}}
+.hero-place{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--sage2);margin-bottom:1.4rem;opacity:0;animation:rise 1s ease .65s forwards}
+.hero-place::before,.hero-place::after{content:'';display:inline-block;width:14px;height:1px;background:var(--sage);vertical-align:middle;margin:0 12px}
+.hero-intro{font-fa
