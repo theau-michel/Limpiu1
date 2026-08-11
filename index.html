@@ -3,329 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Limpiu — Nettoyage soigné en Balagne. Façades, terrasses, vitres, canapés et moquettes, fin de chantier. À domicile, sur toute la Balagne. Demandez votre devis.">
-<title>Limpiu — Nettoyage soigné en Balagne</title>
-<link rel="icon" type="image/png" href="olive-branch.png">
-<link rel="apple-touch-icon" href="olive-branch.png">
+<meta name="description" content="Limpiu — Nettoyage, rénovation et dépannage en Balagne. Façades, volets, coulissants, serrurerie, fin de chantier. À domicile, sur toute la Balagne. Demandez votre devis.">
+<title>Limpiu — Nettoyage, rénovation & dépannage en Balagne</title>
+<link rel="icon" type="image/png" href="/olive-branch.png">
+<link rel="apple-touch-icon" href="/olive-branch.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-:root{
-  --bg:#f4f2ea; --bg2:#faf9f4; --ink:#2d3a2e; --green:#3d4a36; --green2:#5a6b4d;
-  --sage:#a8b29a; --sage2:#8a9580; --line:#e2ddd0; --cream:#f4f2ea; --gold:#9a8c5c;
-}
-body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
-
-/* ---------- NAV ---------- */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(244,242,234,0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;transition:background .4s,backdrop-filter .4s,border-color .4s,padding .4s}
-nav.scrolled{background:rgba(244,242,234,0.88);backdrop-filter:blur(14px);border-color:var(--line);padding:0.9rem 2.5rem}
-.nav-logo{font-size:17px;letter-spacing:7px;font-weight:300;color:var(--ink);text-decoration:none;padding-left:7px;transition:opacity .2s}
-.nav-logo:hover{opacity:.65}
-.nav-right{display:flex;align-items:center;gap:1.8rem}
-.nav-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green2);text-decoration:none;transition:color .2s}
-.nav-link:hover{color:var(--ink)}
-.nav-btn{font-size:11px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:var(--cream);padding:11px 24px;text-decoration:none;transition:background .25s,transform .15s;border-radius:2px}
-.nav-btn:hover{background:var(--ink);transform:translateY(-1px)}
-@media(max-width:760px){.nav-link{display:none}nav{padding:1rem 1.4rem}nav.scrolled{padding:.85rem 1.4rem}}
-
-/* ---------- HERO ---------- */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden}
-.hero-decor{position:absolute;pointer-events:none;opacity:.5;height:auto;display:block}
-.hero-decor.left{top:14%;left:-70px;width:260px;animation:floatA 11s ease-in-out infinite}
-.hero-decor.right{bottom:10%;right:-60px;width:210px;transform:scaleX(-1) rotate(12deg);opacity:.28;animation:floatB 13s ease-in-out infinite .7s}
-@keyframes floatA{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(14px) rotate(2deg)}}
-@keyframes floatB{0%,100%{transform:scaleX(-1) rotate(12deg) translateY(0)}50%{transform:scaleX(-1) rotate(10deg) translateY(14px)}}
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
-.hero-branch{width:118px;margin-bottom:1.6rem;opacity:0;animation:fadeIn 1.1s ease .1s forwards}
-.hero-branch img{width:100%;display:block}
-.hero-logo{font-size:clamp(58px,10vw,104px);font-weight:200;letter-spacing:clamp(12px,2.4vw,22px);color:var(--ink);line-height:1;margin-bottom:1.5rem;padding-left:clamp(12px,2.4vw,22px);opacity:0;animation:rise 1s ease .25s forwards}
-.hero-tagline{font-size:clamp(11px,1.5vw,14px);letter-spacing:5px;text-transform:uppercase;color:var(--green2);margin-bottom:1.5rem;font-weight:400;opacity:0;animation:rise 1s ease .4s forwards}
-.hero-divider{width:48px;height:1px;background:var(--sage);margin-bottom:1.5rem;opacity:0;animation:growLine .9s ease .55s forwards}
-@keyframes growLine{from{width:0;opacity:0}to{width:48px;opacity:1}}
-.hero-place{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--sage2);margin-bottom:1.4rem;opacity:0;animation:rise 1s ease .65s forwards}
-.hero-place::before,.hero-place::after{content:'';display:inline-block;width:14px;height:1px;background:var(--sage);vertical-align:middle;margin:0 12px}
-.hero-intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2.3vw,23px);color:var(--green2);max-width:480px;line-height:1.6;margin-bottom:2.8rem;opacity:0;animation:rise 1s ease .8s forwards}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:rise 1s ease .95s forwards}
-@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.hero-phone{display:inline-block;margin-top:1.4rem;font-size:13px;letter-spacing:1px;color:var(--sage2);text-decoration:none;opacity:0;animation:rise 1s ease 1.1s forwards;transition:color .2s}
-.hero-phone:hover{color:var(--green2)}
-.btn{padding:16px 38px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:400;cursor:pointer;text-decoration:none;transition:all .25s;display:inline-block;border-radius:2px;border:1px solid transparent}
-.btn-fill{background:var(--green);color:var(--cream);border-color:var(--green)}
-.btn-fill:hover{background:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
-.btn-out{background:transparent;color:var(--green);border-color:var(--sage)}
-.btn-out:hover{border-color:var(--green);transform:translateY(-2px)}
-.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--sage2);opacity:0;animation:fadeIn 1s ease 1.4s forwards;display:flex;flex-direction:column;align-items:center;gap:8px}
-.scroll-hint::after{content:'';width:1px;height:24px;background:var(--sage);animation:scrollPulse 2s ease-in-out infinite}
-@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
-
-/* ---------- SECTIONS ---------- */
-section{padding:6.5rem 2rem;position:relative}
-.container{max-width:1080px;margin:0 auto}
-.reveal{opacity:0;transform:translateY(38px);transition:opacity .9s cubic-bezier(.2,.7,.3,1),transform .9s cubic-bezier(.2,.7,.3,1)}
-.reveal.in{opacity:1;transform:translateY(0)}
-.label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sage2);margin-bottom:1rem;text-align:center}
-.title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,48px);font-weight:500;color:var(--ink);text-align:center;line-height:1.1;margin-bottom:1rem}
-.subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--green2);text-align:center;max-width:560px;margin:0 auto 3.4rem}
-
-/* ---------- PRESTATIONS ---------- */
-.presta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
-.presta{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:2.4rem 2.2rem;transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s,border-color .35s;position:relative;overflow:hidden}
-.presta::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green2);transition:height .4s ease}
-.presta:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(45,58,46,.08);border-color:var(--sage)}
-.presta:hover::before{height:100%}
-.presta-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.3rem}
-.presta-ico{width:46px;height:46px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.presta-ico svg{width:44px;height:44px;stroke:var(--green2);stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.presta-ico img{width:42px;height:42px;object-fit:contain}
-.presta-name{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);font-weight:500}
-.presta-desc{font-family:'Cormorant Garamond',serif;font-size:17.5px;color:var(--green2);line-height:1.7;margin-bottom:1.2rem}
-.presta-points{list-style:none}
-.presta-points li{font-size:13px;color:var(--sage2);line-height:1.9;padding-left:18px;position:relative;letter-spacing:.2px}
-.presta-points li::before{content:'';position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--sage)}
-@media(max-width:560px){.presta-grid{grid-template-columns:1fr}}
-.presta-wide{grid-column:1 / -1}
-.auto-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:.5rem}
-.auto-col-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green2);font-weight:500;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
-.auto-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--sage2);margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--line)}
-.presta-method{margin-top:1.3rem;padding-top:1.2rem;border-top:1px solid var(--line)}
-.presta-method-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage2);margin-bottom:.7rem}
-.presta-method p{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--green2);line-height:1.65}
-
-@media(max-width:720px){.auto-cols{grid-template-columns:1fr;gap:1.4rem}}
-
-
-/* ---------- CHANTIER (B2B) ---------- */
-.chantier{background:var(--green);border-radius:18px;padding:3.6rem 3rem;color:var(--cream);position:relative;overflow:hidden;display:grid;grid-template-columns:1.4fr 1fr;gap:3rem;align-items:center}
-.chantier-branch{position:absolute;bottom:-40px;right:-30px;width:230px;opacity:.12;pointer-events:none;height:auto;display:block}
-.chantier-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sage);margin-bottom:1rem}
-.chantier-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.6vw,38px);font-weight:500;line-height:1.1;margin-bottom:1.4rem}
-.chantier-text{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.7;opacity:.92;margin-bottom:1.6rem}
-.chantier-points{list-style:none;position:relative;z-index:2}
-.chantier-points li{font-size:13.5px;color:#d4dac9;line-height:2;padding-left:22px;position:relative;letter-spacing:.3px}
-.chantier-points li::before{content:'✓';position:absolute;left:0;color:var(--sage);font-size:12px}
-.chantier-cta{position:relative;z-index:2}
-.btn-light{background:var(--cream);color:var(--green);padding:15px 34px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;text-decoration:none;display:inline-block;transition:all .25s;border-radius:2px}
-.btn-light:hover{background:#fff;transform:translateY(-2px)}
-@media(max-width:720px){.chantier{grid-template-columns:1fr;padding:2.6rem 1.8rem;gap:1.8rem}}
-
-/* ---------- PROCESS ---------- */
-.process{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;counter-reset:step}
-.step{text-align:center;position:relative}
-.step-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:500;color:var(--sage);line-height:1;margin-bottom:1rem}
-.step-name{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);font-weight:500;margin-bottom:.6rem}
-.step-desc{font-size:13px;color:var(--green2);line-height:1.6}
-@media(max-width:720px){.process{grid-template-columns:1fr 1fr;gap:2rem}}
-
-/* ---------- DEVIS FORM ---------- */
-.devis-wrap{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:3.2rem;max-width:760px;margin:0 auto}
-.field{margin-bottom:1.6rem}
-.field-label{display:block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage2);margin-bottom:.7rem}
-.field-label .req{color:var(--gold)}
-.field input,.field select,.field textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--ink);padding:11px 2px;font-family:'Jost',sans-serif;font-size:16px;font-weight:300;outline:none;transition:border-color .25s;border-radius:0}
-.field input::placeholder,.field textarea::placeholder{color:#bdc4b2}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green2)}
-.field select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6b4d' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
-.field select option{background:var(--bg2)}
-.field textarea{resize:vertical;min-height:90px;line-height:1.6}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
-.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.6rem}
-@media(max-width:600px){.field-row,.field-row-3{grid-template-columns:1fr}}
-.presta-fields{display:none;border-left:2px solid var(--sage);padding-left:1.6rem;margin:1.8rem 0;animation:slideDown .4s ease}
-.presta-fields.active{display:block}
-@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.presta-fields-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--green2);margin-bottom:1.4rem}
-.checkbox-field{display:flex;align-items:center;gap:12px;cursor:pointer;padding:6px 0}
-.checkbox-field input{width:auto;margin:0}
-.checkbox-field span{font-size:15px;color:var(--ink)}
-.upload-zone{border:1.5px dashed var(--line);border-radius:12px;padding:2rem;text-align:center;cursor:pointer;transition:border-color .25s,background .25s}
-.upload-zone:hover{border-color:var(--sage);background:rgba(168,178,154,.04)}
-.upload-zone-main{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--green2);margin-bottom:.5rem}
-.upload-zone-sub{font-size:12px;color:var(--sage2)}
-.upload-list{margin-top:1rem;display:flex;flex-direction:column;gap:6px}
-.upload-item{font-size:13px;color:var(--green2);display:flex;align-items:center;gap:8px}
-.submit-btn{background:var(--green);color:var(--cream);padding:18px 44px;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;width:100%;margin-top:1rem;transition:background .25s,transform .15s;border-radius:2px}
-.submit-btn:hover{background:var(--ink);transform:translateY(-2px)}
-.form-note{font-size:12px;color:var(--sage2);text-align:center;margin-top:1.2rem;line-height:1.6}
-
-/* ---------- ZONES ---------- */
-.zones{display:flex;flex-wrap:wrap;gap:11px;justify-content:center}
-.zone{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid #c5ccb8;border-radius:24px;padding:10px 22px;color:var(--green2);transition:all .25s}
-.zone:hover{background:var(--green);color:var(--cream);border-color:var(--green);transform:translateY(-2px)}
-
-/* ---------- FOOTER ---------- */
-footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:var(--cream)}
-.footer-branch{width:96px;margin:0 auto 1.2rem;opacity:.55;filter:brightness(0) saturate(100%) invert(78%) sepia(8%) saturate(580%) hue-rotate(50deg) brightness(95%) contrast(85%)}
-.footer-logo{font-size:24px;letter-spacing:9px;font-weight:300;padding-left:9px;margin-bottom:.4rem}
-.footer-tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sage);margin-bottom:2rem}
-.footer-phone{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--cream);letter-spacing:2px;text-decoration:none;display:inline-block;transition:opacity .2s}
-.footer-phone:hover{opacity:.75}
-.footer-mail{display:block;font-size:13px;letter-spacing:1px;color:#d4dac9;text-decoration:none;margin-top:.6rem;transition:color .2s}
-.footer-mail:hover{color:var(--cream)}
-.footer-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-top:2rem;opacity:.7}
-</style>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-<!-- Branche d'olivier SVG réutilisable -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <g id="branch">
-      <path d="M10 150 Q120 110 230 60" fill="none" stroke="#3d4a36" stroke-width="2.5" stroke-linecap="round"/>
-      <g fill="#3d4a36">
-        <ellipse cx="55" cy="128" rx="20" ry="8" transform="rotate(-18 55 128)"/>
-        <ellipse cx="95" cy="148" rx="18" ry="7" transform="rotate(28 95 148)"/>
-        <ellipse cx="105" cy="108" rx="20" ry="8" transform="rotate(-30 105 108)"/>
-        <ellipse cx="145" cy="128" rx="18" ry="7" transform="rotate(22 145 128)"/>
-        <ellipse cx="152" cy="86" rx="21" ry="8" transform="rotate(-38 152 86)"/>
-        <ellipse cx="192" cy="104" rx="18" ry="7" transform="rotate(15 192 104)"/>
-        <ellipse cx="198" cy="66" rx="20" ry="8" transform="rotate(-42 198 66)"/>
-        <ellipse cx="232" cy="82" rx="16" ry="6" transform="rotate(10 232 82)"/>
-      </g>
-    </g>
-  </defs>
-</svg>
-
 <nav id="nav">
-  <a class="nav-logo" href="#top">LIMPIU</a>
+  <a class="nav-logo" href="/">LIMPIU</a>
   <div class="nav-right">
-    <a class="nav-link" href="#prestations">Prestations</a>
-    <a class="nav-link" href="#chantier">Fin de chantier</a>
-    <a class="nav-link" href="#zones">Zones</a>
+    <a class="nav-link" href="/nettoyage/">Nettoyage</a>
+    <a class="nav-link" href="/renovation/">Rénovation</a>
+    <a class="nav-link" href="/depannage/">Dépannage</a>
+    <a class="nav-btn" href="#poles">Nos prestations</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero" id="top">
-  <img class="hero-decor left" src="olive-branch.png" alt="" aria-hidden="true">
-  <img class="hero-decor right" src="olive-branch.png" alt="" aria-hidden="true">
+  <img class="hero-decor left" src="/olive-branch.png" alt="" aria-hidden="true">
+  <img class="hero-decor right" src="/olive-branch.png" alt="" aria-hidden="true">
   <div class="hero-content">
-    <div class="hero-branch"><img src="olive-branch.png" alt=""></div>
+    <div class="hero-branch"><img src="/olive-branch.png" alt=""></div>
     <h1 class="hero-logo">LIMPIU</h1>
-    <p class="hero-tagline">Nettoyage soigné en Balagne</p>
+    <p class="hero-tagline">Nettoyage · Rénovation · Dépannage</p>
     <div class="hero-divider"></div>
     <div class="hero-place">Corse</div>
-    <p class="hero-intro">Façades, terrasses, vitres, textiles. Le travail bien fait, chez vous, avec le souci du détail.</p>
+    <p class="hero-intro">Façades, volets, petits imprévus du quotidien. Le travail bien fait, chez vous, avec le souci du détail.</p>
     <div class="hero-cta">
-      <a href="#devis" class="btn btn-fill">Réserver un créneau</a>
+      <a href="#poles" class="btn btn-fill">Voir nos prestations</a>
     </div>
     <a href="tel:0650638021" class="hero-phone">ou appelez le 06 50 63 80 21</a>
   </div>
   <div class="scroll-hint">Découvrir</div>
 </div>
 
-<!-- PRESTATIONS -->
-<section id="prestations">
+<!-- PÔLES -->
+<section id="poles">
   <div class="container reveal">
-    <p class="label">Ce que nous faisons</p>
-    <h2 class="title">Nos services</h2>
-    <p class="subtitle">De la remise en état de vos extérieurs au nettoyage de vos textiles, Limpiu prend soin de ce qui compte, avec la même exigence à chaque intervention.</p>
-    <div class="presta-grid">
+    <p class="label">Trois métiers, une même exigence</p>
+    <h2 class="title">Nos prestations</h2>
+    <p class="subtitle">De l'entretien courant aux petites réparations, Limpiu prend soin de votre maison en Balagne.</p>
+    <div class="pole-grid">
 
-      <div class="presta">
-        <div class="presta-head">
-          <div class="presta-ico">
-            <svg viewBox="0 0 48 48"><path d="M6 38 L6 30 Q6 28 8 28 L40 28 Q42 28 42 30 L42 38"/><path d="M6 38 L42 38"/><path d="M10 28 L13 16 Q14 13 17 13 L31 13 Q34 13 35 16 L38 28"/><path d="M14 22 L34 22"/><path d="M18 13 L18 28 M30 13 L30 28"/></svg>
-          </div>
-          <div class="presta-name">Façades & terrasses</div>
+      <a class="pole-card" href="/nettoyage/">
+        <div class="pole-ico">
+          <svg viewBox="0 0 48 48"><path d="M24 6c0 0-10 14-10 22a10 10 0 0 0 20 0c0-8-10-22-10-22z"/></svg>
         </div>
-        <p class="presta-desc">Façades, terrasses, dalles, murets, escaliers. En Balagne, le soleil, l'humidité et les embruns marquent vite les surfaces extérieures : mousses, lichens, traînées noires, encrassement. On nettoie chaque support pour retrouver l'aspect d'origine, sans l'agresser.</p>
-        <ul class="presta-points">
-          <li>Pierre, enduit, bois, carrelage, béton</li>
-          <li>Pression dosée selon le matériau</li>
-          <li>Traitement anti-mousse en option</li>
+        <div class="pole-name">Nettoyage</div>
+        <p class="pole-desc">Façades, vitres, textiles, fin de chantier — retrouver tout son éclat, dedans comme dehors.</p>
+        <ul class="pole-points">
+          <li>Façades & terrasses</li>
+          <li>Vitres, canapés & moquettes</li>
+          <li>Remise en état fin de chantier</li>
         </ul>
-        <div class="presta-method">
-          <div class="presta-method-label">Le déroulé</div>
-          <p>Inspection de la surface, balayage et dégagement. Nettoyage sous pression maîtrisée, dosée selon le matériau pour ne jamais l'agresser. Sur demande, application d'un traitement qui ralentit le retour des mousses.</p>
-        </div>
-      </div>
+        <span class="pole-link">Découvrir Nettoyage</span>
+      </a>
 
-      <div class="presta">
-        <div class="presta-head">
-          <div class="presta-ico">
-            <svg viewBox="0 0 48 48"><rect x="9" y="8" width="30" height="32" rx="2"/><line x1="24" y1="8" x2="24" y2="40"/><line x1="9" y1="24" x2="39" y2="24"/><path d="M13 13 L19 19 M13 19 L19 13" opacity="0.5"/></svg>
-          </div>
-          <div class="presta-name">Vitres</div>
+      <a class="pole-card" href="/renovation/">
+        <div class="pole-ico">
+          <svg viewBox="0 0 48 48"><rect x="24" y="6" width="10" height="16" rx="2" transform="rotate(45 29 14)"/><line x1="24" y1="20" x2="10" y2="34"/></svg>
         </div>
-        <p class="presta-desc">Fenêtres, baies vitrées, vérandas. Un vitrage net change toute la lumière d'une pièce. On élimine traces, dépôts calcaires et résidus, intérieur comme extérieur, pour une transparence parfaite.</p>
-        <ul class="presta-points">
-          <li>Intérieur et extérieur</li>
-          <li>Vérandas et grandes surfaces vitrées</li>
-          <li>Encadrements et rebords compris</li>
+        <div class="pole-name">Rénovation</div>
+        <p class="pole-desc">Volets bois, coulissants, cuisine — remettre en état sans repartir de zéro.</p>
+        <ul class="pole-points">
+          <li>Volets bois & roulettes de coulissants</li>
+          <li>Modernisation cuisine</li>
+          <li>Moustiquaires, stores & brise-vue</li>
         </ul>
-        <div class="presta-method">
-          <div class="presta-method-label">Le déroulé</div>
-          <p>Dépoussiérage des encadrements, lavage du vitrage à la solution adaptée, puis raclage et finition microfibre pour ne laisser aucune trace. Les rebords et appuis sont nettoyés dans la foulée.</p>
-        </div>
-      </div>
+        <span class="pole-link">Découvrir Rénovation</span>
+      </a>
 
-      <div class="presta">
-        <div class="presta-head">
-          <div class="presta-ico">
-            <svg viewBox="0 0 48 48"><path d="M8 26 Q8 21 13 21 L35 21 Q40 21 40 26 L40 34 L8 34 Z"/><path d="M11 21 L11 16 Q11 13 14 13 L34 13 Q37 13 37 16 L37 21"/><path d="M8 34 L8 38 M40 34 L40 38"/><path d="M13 21 Q13 25 13 27 M35 21 Q35 25 35 27"/></svg>
-          </div>
-          <div class="presta-name">Canapés & moquettes</div>
+      <a class="pole-card" href="/depannage/">
+        <div class="pole-ico">
+          <svg viewBox="0 0 48 48"><circle cx="12" cy="12" r="6"/><circle cx="36" cy="36" r="6"/><line x1="16" y1="16" x2="32" y2="32"/></svg>
         </div>
-        <p class="presta-desc">Canapés, fauteuils, matelas, tapis et moquettes. Les textiles retiennent en profondeur poussière, taches et odeurs. On les nettoie à cœur par injection-extraction, pour raviver les couleurs et assainir la fibre.</p>
-        <ul class="presta-points">
-          <li>Tissu, cuir, fibres</li>
-          <li>Tapis et moquettes</li>
-          <li>Traitement ciblé des taches</li>
+        <div class="pole-name">Dépannage</div>
+        <p class="pole-desc">Serrurerie, encombrants, petits imprévus — une solution rapide, sans prise de tête.</p>
+        <ul class="pole-points">
+          <li>Serrurerie</li>
+          <li>Évacuation d'encombrants</li>
+          <li>Quincaillerie & divers</li>
         </ul>
-        <div class="presta-method">
-          <div class="presta-method-label">Le déroulé</div>
-          <p>Aspiration, pré-traitement des taches, puis nettoyage par injection-extraction : on injecte une solution nettoyante et on ré-aspire dans le même geste, entraînant la saleté incrustée. Réutilisable le jour même dans la plupart des cas.</p>
-        </div>
-      </div>
+        <span class="pole-link">Découvrir Dépannage</span>
+      </a>
 
-      <div class="presta">
-        <div class="presta-head">
-          <div class="presta-ico">
-            <svg viewBox="0 0 48 48"><path d="M14 9 L34 9 L40 33 L8 33 Z"/><path d="M11 21 L37 21"/><path d="M16 9 L13 33 M24 9 L24 33 M32 9 L35 33"/><path d="M24 33 L24 39 M18 39 L30 39"/></svg>
-          </div>
-          <div class="presta-name">Panneaux photovoltaïques</div>
-        </div>
-        <p class="presta-desc">Sous le soleil de Balagne, poussière, pollen, sel et fientes s'accumulent sur les panneaux et font baisser le rendement. On les nettoie à l'eau pure, sans aucun détergent, pour préserver leur efficacité.</p>
-        <ul class="presta-points">
-          <li>Eau pure, sans produit chimique</li>
-          <li>Brosse douce, jamais de haute pression</li>
-          <li>Préserve le rendement et la garantie</li>
-        </ul>
-        <div class="presta-method">
-          <div class="presta-method-label">Le déroulé</div>
-          <p>Intervention panneaux froids, tôt le matin ou en fin de journée. Brossage doux à l'eau déminéralisée, puis dernier passage à l'eau pure : en séchant, elle ne laisse aucune trace, sans essuyage. Une technique non agressive qui respecte le verre et les traitements de surface, sans rayure ni dépôt de calcaire.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CHANTIER B2B -->
-<section id="chantier">
-  <div class="container reveal">
-    <div class="chantier">
-      <img class="chantier-branch" src="olive-branch.png" alt="" aria-hidden="true">
-      <div>
-        <p class="chantier-label">Après les travaux</p>
-        <h3 class="chantier-title">Nettoyage de fin de chantier</h3>
-        <p class="chantier-text">Limpiu prend en charge la remise en état complète pour livrer un espace propre, net et prêt à vivre.</p>
-        <ul class="chantier-points">
-          <li>Traitement de la laitance et du voile de ciment sur les sols</li>
-          <li>Dépoussiérage complet, du sol au plafond</li>
-          <li>Aspiration des poussières fines de ponçage et de plâtre</li>
-          <li>Traitement spécifique des sanitaires et de la robinetterie</li>
-          <li>Menuiseries remises en état, aluminium noir compris</li>
-          <li>Intervention en deux phases, finition après les derniers corps de métier</li>
-        </ul>
-      </div>
-      <div class="chantier-cta">
-        <a href="#devis" class="btn-light">Nous contacter</a>
-      </div>
     </div>
   </div>
 </section>
@@ -360,171 +127,6 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
   </div>
 </section>
 
-<!-- DEVIS -->
-<section id="devis">
-  <div class="container reveal">
-    <p class="label">Devis gratuit</p>
-    <h2 class="title">Décrivez votre besoin</h2>
-    <p class="subtitle">Remplissez le formulaire ci-dessous. Plus vous êtes précis, plus le devis sera juste — et n'hésitez pas à joindre des photos.</p>
-
-    <div class="devis-wrap">
-      <div class="field-row">
-        <div class="field">
-          <label class="field-label" for="nom">Nom <span class="req">*</span></label>
-          <input type="text" id="nom" placeholder="Votre nom" autocomplete="name">
-        </div>
-        <div class="field">
-          <label class="field-label" for="tel">Téléphone <span class="req">*</span></label>
-          <input type="tel" id="tel" placeholder="06 XX XX XX XX" autocomplete="tel">
-        </div>
-      </div>
-
-      <div class="field-row">
-        <div class="field">
-          <label class="field-label" for="type-client">Vous êtes <span class="req">*</span></label>
-          <select id="type-client">
-            <option value="">Choisir…</option>
-            <option>Particulier</option>
-            <option>Professionnel</option>
-          </select>
-        </div>
-        <div class="field">
-          <label class="field-label" for="commune">Commune <span class="req">*</span></label>
-          <select id="commune" onchange="toggleAutreCommune()">
-            <option value="">Choisir…</option>
-            <option>L'Île-Rousse</option>
-            <option>Calvi</option>
-            <option>Lumio</option>
-            <option>Algajola</option>
-            <option>Belgodère</option>
-            <option>Calenzana</option>
-            <option value="Autre">Autre village de Balagne</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field" id="autre-commune-field" style="display:none">
-        <label class="field-label" for="autre-commune">Précisez votre village</label>
-        <input type="text" id="autre-commune" placeholder="Nom du village">
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="prestation">Prestation souhaitée <span class="req">*</span></label>
-        <select id="prestation" onchange="showPrestaFields()">
-          <option value="">Choisir…</option>
-          <option value="terrasse">Façades & terrasses</option>
-          <option value="vitres">Vitres</option>
-          <option value="canape">Canapés & moquettes</option>
-          <option value="solaire">Panneaux photovoltaïques</option>
-          <option value="chantier">Remise en état fin de chantier</option>
-        </select>
-      </div>
-
-      <!-- TERRASSE -->
-      <div class="presta-fields" id="f-terrasse">
-        <p class="presta-fields-title">À propos de votre terrasse</p>
-        <div class="field-row">
-          <div class="field">
-            <label class="field-label" for="t-surface">Surface approximative (m²)</label>
-            <input type="number" id="t-surface" min="1" placeholder="ex. 30">
-          </div>
-          <div class="field">
-            <label class="field-label" for="t-sol">Nature du sol</label>
-            <select id="t-sol">
-              <option value="">Choisir…</option>
-              <option>Bois</option>
-              <option>Carrelage</option>
-              <option>Pierre</option>
-              <option>Béton</option>
-              <option>Autre</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- VITRES -->
-      <div class="presta-fields" id="f-vitres">
-        <p class="presta-fields-title">À propos de vos vitres</p>
-        <div class="field-row-3">
-          <div class="field">
-            <label class="field-label" for="v-dim">Dimensions (L × H approx.)</label>
-            <input type="text" id="v-dim" placeholder="ex. 120 × 140 cm">
-          </div>
-          <div class="field">
-            <label class="field-label" for="v-vantaux">Nombre de vantaux</label>
-            <input type="number" id="v-vantaux" min="1" placeholder="ex. 2">
-          </div>
-          <div class="field">
-            <label class="field-label" for="v-nb">Nombre de fenêtres</label>
-            <input type="number" id="v-nb" min="1" placeholder="ex. 6">
-          </div>
-        </div>
-      </div>
-
-      <!-- CANAPE / TEXTILES -->
-      <div class="presta-fields" id="f-canape">
-        <p class="presta-fields-title">À propos de votre textile</p>
-        <div class="field">
-          <label class="field-label" for="c-type">Type</label>
-          <select id="c-type" onchange="showTextileFields()">
-            <option value="">Choisir…</option>
-            <option>Canapé</option>
-            <option>Fauteuil</option>
-            <option>Moquette</option>
-            <option>Tapis</option>
-          </select>
-        </div>
-        <div class="field-row" id="c-fields-assise" style="display:none">
-          <div class="field">
-            <label class="field-label" for="c-matiere">Matière</label>
-            <select id="c-matiere">
-              <option value="">Choisir…</option>
-              <option>Tissu</option>
-              <option>Cuir</option>
-            </select>
-          </div>
-          <div class="field">
-            <label class="field-label" for="c-places">Nombre de places</label>
-            <input type="number" id="c-places" min="1" placeholder="ex. 3">
-          </div>
-        </div>
-        <div class="field" id="c-fields-sol" style="display:none">
-          <label class="field-label" for="c-dim">Surface / dimensions</label>
-          <input type="text" id="c-dim" placeholder="ex. 12 m² ou 4 × 3 m">
-        </div>
-      </div>
-
-      <!-- CHANTIER -->
-      <div class="presta-fields" id="f-chantier">
-        <p class="presta-fields-title">À propos de votre chantier</p>
-        <div class="field">
-          <label class="field-label" for="ch-surface">Surface approximative (m²)</label>
-          <input type="number" id="ch-surface" min="1" placeholder="ex. 90">
-        </div>
-        <p style="font-size:13px;color:var(--sage2);line-height:1.6">Précisez le type de bien et l'état dans le message ci-dessous — on établit un devis sur mesure.</p>
-      </div>
-
-      <div class="field" style="margin-top:1.8rem">
-        <label class="field-label">Photos (jusqu'à 3)</label>
-        <div class="upload-zone" onclick="document.getElementById('photos').click()">
-          <div class="upload-zone-main">Cliquer pour ajouter</div>
-          <div class="upload-zone-sub">JPG, PNG ou HEIC · 3 max · une par une ou en sélection multiple</div>
-        </div>
-        <input type="file" id="photos" accept="image/*" multiple style="display:none" onchange="addPhotos(this)">
-        <div class="upload-list" id="photo-list"></div>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="message">Message</label>
-        <textarea id="message" placeholder="Précisez votre besoin, vos disponibilités, toute information utile…"></textarea>
-      </div>
-
-      <button type="button" class="submit-btn" onclick="submitDevis()">Envoyer ma demande</button>
-      <p class="form-note">Réponse sous 24 h. Vous pouvez aussi appeler le 06 50 63 80 21.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ZONES -->
 <section id="zones">
   <div class="container reveal">
@@ -543,188 +145,19 @@ footer{padding:4rem 2rem 3rem;text-align:center;background:var(--green);color:va
 
 <!-- FOOTER -->
 <footer>
-  <img class="footer-branch" src="olive-branch.png" alt="">
+  <img class="footer-branch" src="/olive-branch.png" alt="">
+  <div class="footer-nav">
+    <a href="/nettoyage/">Nettoyage</a>
+    <a href="/renovation/">Rénovation</a>
+    <a href="/depannage/">Dépannage</a>
+  </div>
   <div class="footer-logo">LIMPIU</div>
-  <div class="footer-tag">Nettoyage soigné en Balagne</div>
+  <div class="footer-tag">Nettoyage · Rénovation · Dépannage</div>
   <a class="footer-phone" href="tel:0650638021">06 50 63 80 21</a>
   <a class="footer-mail" href="mailto:hello@limpiu.fr">hello@limpiu.fr</a>
   <div class="footer-sub">Limpiu · Balagne, Corse · Particuliers & professionnels</div>
 </footer>
 
-<script>
-// ── CONFIG (à remplir) ────────────────────────────────────────────────────────
-var CL_CLOUD  = 'dspfazrxe';        // ton cloud Cloudinary (le même que la Nitonnerie)
-var CL_PRESET = 'limpiu';           // preset d'upload non signé — à créer dans Cloudinary
-
-var AT_TOKEN  = 'patnHCzOZQd2cjZa8.c4818d1eb7d4f6f4f2321e211d459959c9cdce3732e36e61e3daa09df6743eb8';
-var AT_BASE   = 'app6BTLS4lCF9PlyT';       // base Limpiu
-var AT_TABLE  = 'Demandes de devis';       // nom EXACT de la table
-var F_NOM     = 'Nom';                     // nom EXACT de ta colonne primaire (ex. 'Name' si pas renommée)
-
-var AT_HEADERS = {'Authorization':'Bearer '+AT_TOKEN,'Content-Type':'application/json'};
-
-// ── Nav au scroll ─────────────────────────────────────────────────────────────
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){
-  if(window.scrollY>30)nav.classList.add('scrolled');else nav.classList.remove('scrolled');
-});
-
-// ── Reveal au scroll ──────────────────────────────────────────────────────────
-var obs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
-
-// ── Champ "village" si commune = Autre ────────────────────────────────────────
-function toggleAutreCommune(){
-  var v=document.getElementById('commune').value;
-  document.getElementById('autre-commune-field').style.display = (v==='Autre') ? 'block' : 'none';
-}
-
-// ── Champs conditionnels selon prestation ─────────────────────────────────────
-function showPrestaFields(){
-  var val=document.getElementById('prestation').value;
-  ['terrasse','vitres','canape','chantier'].forEach(function(p){
-    document.getElementById('f-'+p).classList.remove('active');
-  });
-  var el = val ? document.getElementById('f-'+val) : null;   // 'solaire' n'a pas de bloc dédié
-  if(el) el.classList.add('active');
-}
-
-// ── Sous-champs textile selon le type ─────────────────────────────────────────
-function showTextileFields(){
-  var t=document.getElementById('c-type').value;
-  document.getElementById('c-fields-assise').style.display=(t==='Canapé'||t==='Fauteuil')?'':'none';
-  document.getElementById('c-fields-sol').style.display=(t==='Moquette'||t==='Tapis')?'':'none';
-}
-
-// ── Photos (accumulées, max 3) ────────────────────────────────────────────────
-var photoFiles=[];
-function addPhotos(input){
-  var added=Array.prototype.slice.call(input.files);
-  for(var i=0;i<added.length;i++){
-    if(photoFiles.length>=3){alert('3 photos maximum.');break;}
-    photoFiles.push(added[i]);
-  }
-  input.value='';   // réinitialise pour pouvoir en rajouter
-  renderPhotos();
-}
-function removePhoto(i){ photoFiles.splice(i,1); renderPhotos(); }
-function renderPhotos(){
-  var list=document.getElementById('photo-list');
-  list.innerHTML='';
-  photoFiles.forEach(function(f,i){
-    var div=document.createElement('div');
-    div.className='upload-item';
-    div.textContent='— '+f.name+'  ';
-    var x=document.createElement('span');
-    x.textContent='✕';
-    x.style.cssText='cursor:pointer;color:#9a8c5c;margin-left:6px;font-weight:600';
-    x.onclick=function(){removePhoto(i);};
-    div.appendChild(x);
-    list.appendChild(div);
-  });
-}
-
-// ── Upload Cloudinary (renvoie l'URL sécurisée) ───────────────────────────────
-async function uploadToCloudinary(file){
-  var fd=new FormData();
-  fd.append('file',file);
-  fd.append('upload_preset',CL_PRESET);
-  var res=await fetch('https://api.cloudinary.com/v1_1/'+CL_CLOUD+'/image/upload',{method:'POST',body:fd});
-  if(!res.ok) throw new Error('Échec upload photo');
-  var data=await res.json();
-  return data.secure_url;
-}
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-function val(id){var el=document.getElementById(id);return el?el.value.trim():'';}
-function num(id){var v=val(id);return v===''?null:Number(v);}
-
-// ── Envoi vers Cloudinary + Airtable ──────────────────────────────────────────
-async function submitDevis(){
-  var nom=val('nom');
-  var tel=val('tel');
-  var typeClient=document.getElementById('type-client').value;
-  var commune=document.getElementById('commune').value;
-  if(commune==='Autre'){
-    var autre=val('autre-commune');
-    if(autre) commune=autre;
-  }
-  var prestationVal=document.getElementById('prestation').value;
-  var prestationLabel=document.getElementById('prestation').selectedOptions[0].text;
-  var message=val('message');
-
-  if(!nom||!tel||!typeClient||!commune||!prestationVal){
-    alert('Merci de renseigner au minimum votre nom, téléphone, profil, commune et la prestation souhaitée.');
-    return;
-  }
-
-  var btn=document.querySelector('.submit-btn');
-  var oldLabel=btn.textContent;
-  btn.disabled=true; btn.textContent='Envoi…';
-
-  try {
-    // 1. Upload des photos (max 3) vers Cloudinary
-    var photos=[];
-    var files=photoFiles.slice(0,3);
-    for(var i=0;i<files.length;i++){
-      btn.textContent='Upload photo '+(i+1)+'/'+files.length+'…';
-      var url=await uploadToCloudinary(files[i]);
-      photos.push({url:url});
-    }
-
-    // 2. Champs communs
-    btn.textContent='Envoi…';
-    var fields={};
-    fields[F_NOM]='';                       // rempli juste après
-    fields[F_NOM]=nom;
-    fields['Téléphone']=tel;
-    fields['Type de client']=typeClient;
-    fields['Commune']=commune;
-    fields['Prestation']=prestationLabel;
-    fields['Statut']='Nouveau';
-    fields['Origine de la demande']='Site web';
-    fields['Date de demande']=new Date().toISOString().split('T')[0];
-    if(message) fields['Message']=message;
-    if(photos.length) fields['Photos']=photos;
-
-    // 3. Champs spécifiques selon la prestation
-    if(prestationVal==='terrasse'){
-      if(num('t-surface')!==null) fields['Surface en m² (Terrasse)']=num('t-surface');
-      if(val('t-sol'))            fields['Nature du sol (Terrasse)']=val('t-sol');
-    } else if(prestationVal==='vitres'){
-      if(val('v-dim'))            fields['Dimensions fenêtres (Vitres)']=val('v-dim');
-      if(num('v-vantaux')!==null) fields['Nombre de vantaux (Vitres)']=num('v-vantaux');
-      if(num('v-nb')!==null)      fields['Nombre de fenêtres (Vitres)']=num('v-nb');
-    } else if(prestationVal==='canape'){
-      if(val('c-type'))           fields['Type de textile']=val('c-type');
-      if(val('c-matiere'))        fields['Matière (Canapé)']=val('c-matiere');
-      if(num('c-places')!==null)  fields['Nombre de places (Canapé)']=num('c-places');
-      if(val('c-dim'))            fields['Dimensions (textile)']=val('c-dim');
-    } else if(prestationVal==='chantier'){
-      if(num('ch-surface')!==null) fields['Description (Fin de chantier)']='Surface : '+num('ch-surface')+' m²';
-    }
-
-    // 4. Création de la fiche (typecast crée au besoin les options de sélection)
-    var res=await fetch('https://api.airtable.com/v0/'+AT_BASE+'/'+encodeURIComponent(AT_TABLE),{
-      method:'POST', headers:AT_HEADERS,
-      body:JSON.stringify({records:[{fields:fields}], typecast:true})
-    });
-    if(!res.ok){var e=await res.json();throw new Error(e.error&&e.error.message?e.error.message:'Erreur Airtable '+res.status);}
-
-    document.querySelector('.devis-wrap').innerHTML =
-      '<div style="text-align:center;padding:2rem 1rem">'+
-      '<div style="font-size:42px;color:var(--green2);margin-bottom:1rem">✓</div>'+
-      '<h3 style="font-family:\'Cormorant Garamond\',serif;font-size:26px;color:var(--ink);margin-bottom:.8rem">Demande reçue !</h3>'+
-      '<p style="color:var(--green2);line-height:1.7">Merci '+nom+'. On revient vers vous sous 24 h.<br>Pour un besoin urgent : <a href="tel:0650638021" style="color:var(--gold)">06 50 63 80 21</a>.</p>'+
-      '</div>';
-  } catch(err){
-    btn.disabled=false; btn.textContent=oldLabel;
-    alert('Erreur lors de l\'envoi : '+err.message);
-  }
-}
-
-</script>
+<script src="/common.js"></script>
 </body>
 </html>
